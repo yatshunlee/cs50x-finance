@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <!--<p class="form-group">Bought!/Sold!/Welcome!/Registered!</p>-->
+    <table class="table table-striped">
+        <thead>
+            <td>Symbol</td> <td>Name</td> <td>Shares</td> <td>Price</td> <td>Total</td>
+        </thead>
+        {% for stock in stockDict %}
+        <tr>
+            <td>{{ stock["symbol"] }}</td> <td>{{ stock["firmname"] }}</td> <td>{{ stock["SUM(shares)"] }}</td> <td>{{ stock["price"] }}</td> <td>{{ stock["total"] }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>CASH</td> <td></td> <td></td> <td></td> <td>{{ userCash }}</td>
+        </tr>
+        <tr>
+            <td></td> <td></td> <td></td> <td></td> <td>{{ total }}</td>
+        </tr>
+    </table>
+{% endblock %}
