@@ -63,11 +63,17 @@ Let’s turn our attention now to this problem’s distribution code!
 
 ### Downloading
 $ wget https://cdn.cs50.net/2019/fall/tracks/web/finance/finance.zip
+
 $ unzip finance.zip
+
 $ rm finance.zip
+
 $ cd finance
+
 $ ls
+
 application.py  helpers.py        static/
+
 finance.db      requirements.txt  templates/
 
 ## Configuring
