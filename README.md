@@ -1,9 +1,9 @@
-C$50 Finance
+# C$50 Finance
+
 Implement a website via which users can “buy” and “sell” stocks, a la the below.
 
-C$50 Finance
+## Background
 
-Background
 If you’re not quite sure what it means to buy and sell stocks (i.e., shares of a company), head here for a tutorial.
 
 You’re about to implement C$50 Finance, a web app via which you can manage portfolios of stocks. Not only will this tool allow you to check real stocks’ actual prices and portfolios’ values, it will also let you buy (okay, “buy”) and sell (okay, “sell”) stocks by querying IEX for stocks’ prices.
@@ -59,8 +59,9 @@ Notice how, between the curly braces, there’s a comma-separated list of key-va
 
 Let’s turn our attention now to this problem’s distribution code!
 
-Distribution
-Downloading
+## Distribution
+
+### Downloading
 $ wget https://cdn.cs50.net/2019/fall/tracks/web/finance/finance.zip
 $ unzip finance.zip
 $ rm finance.zip
@@ -68,7 +69,8 @@ $ cd finance
 $ ls
 application.py  helpers.py        static/
 finance.db      requirements.txt  templates/
-Configuring
+
+## Configuring
 Before getting started on this assignment, we’ll need to register for an API key in order to be able to query IEX’s data. To do so, follow these steps:
 
 Visit iexcloud.io/cloud-login#/register/.
@@ -81,7 +83,7 @@ In a terminal window within CS50 IDE, execute:
 $ export API_KEY=value
 where value is that (pasted) value, without any space immediately before or after the =. You also may wish to paste that value in a text document somewhere, in case you need it again later.
 
-Running
+## Running
 . Start Flask’s built-in web server (within finance/):
 
 $ flask run
@@ -89,7 +91,7 @@ Visit the URL outputted by flask to see the distribution code in action. You won
 
 Via CS50’s file browser, double-click finance.db in order to open it with phpLiteAdmin. Notice how finance.db comes with a table called users. Take a look at its structure (i.e., schema). Notice how, by default, new users will receive $10,000 in cash. But there aren’t (yet!) any users (i.e., rows) therein to browse. + Here on out, if you’d prefer a command line, you’re welcome to use sqlite3 instead of phpLiteAdmin.
 
-Understanding
+## Understanding
 application.py
 Open up application.py. Atop the file are a bunch of imports, among them CS50’s SQL module and a few helper functions. More on those soon.
 
@@ -121,7 +123,7 @@ Now look in templates/. In login.html is, essentially, just an HTML form, styliz
 
 Last up is layout.html. It’s a bit bigger than usual, but that’s mostly because it comes with a fancy, mobile-friendly “navbar” (navigation bar), also based on Bootstrap. Notice how it defines a block, main, inside of which templates (including apology.html and login.html) shall go. It also includes support for Flask’s message flashing so that you can relay messages from one route to another for the user to see.
 
-Specification
+## Specification
 register
 Complete the implementation of register in such a way that it allows a user to register for an account via a form.
 
@@ -196,34 +198,3 @@ https://finance.cs50.net/
 Feel free to register for an account and play around. Do not use a password that you use on other sites.
 
 It is reasonable to look at the staff’s HTML and CSS.
-
-Hints
-Within cs50.SQL is an execute method whose first argument should be a str of SQL. If that str contains named parameters to which values should be bound, those values can be provided as additional named parameters to execute. See the implementation of login for one such example. The return value of execute is as follows:
-
-If str is a SELECT, then execute returns a list of zero or more dict objects, inside of which are keys and values representing a table’s fields and cells, respectively.
-If str is an INSERT, and the table into which data was inserted contains an autoincrementing PRIMARY KEY, then execute returns the value of the newly inserted row’s primary key.
-If str is a DELETE or an UPDATE, then execute returns the number of rows deleted or updated by str.
-If an INSERT or UPDATE would violate some constraint (e.g., a UNIQUE index), then execute returns None. In cases of error, execute raises a RuntimeError.
-
-Recall that cs50.SQL will log to your terminal window any queries that you execute via execute (so that you can confirm whether they’re as intended).
-Be sure to use named bind parameters (i.e., a paramstyle of named) when calling CS50’s execute method, a la WHERE name=:name. Do not use f-strings, format or + (i.e., concatenation), lest you risk a SQL injection attack.
-If (and only if) already comfortable with SQL, you’re welcome to use SQLAlchemy Core or Flask-SQLAlchemy (i.e., SQLAlchemy ORM) instead of cs50.SQL.
-You’re welcome to add additional static files to static/.
-Odds are you’ll want to consult Jinja’s documentation when implementing your templates.
-It is reasonable to ask others to try out (and try to trigger errors in) your site.
-You’re welcome to alter the aesthetics of the sites, as via
-https://bootswatch.com/,
-https://getbootstrap.com/docs/4.1/content/,
-https://getbootstrap.com/docs/4.1/components/, and/or
-https://memegen.link/.
-FAQs
-ImportError: No module named ‘application’
-By default, flask looks for a file called application.py in your current working directory (because we’ve configured the value of FLASK_APP, an environment variable, to be application.py). If seeing this error, odds are you’ve run flask in the wrong directory!
-
-OSError: [Errno 98] Address already in use
-If, upon running flask, you see this error, odds are you (still) have flask running in another tab. Be sure to kill that other process, as with ctrl-c, before starting flask again. If you haven’t any such other tab, execute fuser -k 8080/tcp to kill any processes that are (still) listening on TCP port 8080.
-
-How to Submit
-Execute the below from within your finance directory, logging in with your GitHub username and password when prompted. For security, you’ll see asterisks (*) instead of the actual characters in your password.
-
-submit50 cs50/problems/2020/x/tracks/web/finance
